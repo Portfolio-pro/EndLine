@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,15 +16,23 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.endline_v1.R;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class AllFragment extends Fragment {
 
     private AllViewModel AllViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        AllViewModel =
-                new ViewModelProvider(this).get(AllViewModel.class);
+    private TextView tv_home; // Home TextView
+    private CalendarView cv_home; // Home CalanderView
+    private ListView lv;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+
+    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+        AllViewModel = new ViewModelProvider(this).get(AllViewModel.class);
         View root = inflater.inflate(R.layout.fragment_all, container, false);
         final TextView textView = root.findViewById(R.id.text_all);
         AllViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -30,6 +41,7 @@ public class AllFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
         return root;
     }
 }

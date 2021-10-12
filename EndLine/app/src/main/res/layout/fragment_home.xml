@@ -6,49 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="357dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="center"
+        android:background="#F5F5F5"
+        android:textColor="#4C4C4C"
+        android:textSize="20sp" />
+
+    <ListView
+        android:id="@+id/list_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--
-        <TextView
-            android:id="@+id/text_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="16dp" /> -->
-
-        <TextView
-            android:id="@+id/text_home"
-            android:layout_width="match_parent"
-            android:layout_height="62dp"
-            android:gravity="center"
-            android:background="#FAFAFA"
-            android:textColor="#4C4C4C"
-            android:textSize="20sp" />
-
-        <ListView
-            android:id="@+id/list_home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="#5D5D5D"
-            android:background="#FAFAFA"
-            android:dividerHeight="0px"
-            android:textSize="24sp"
-            android:textColor="#4C4C4C"/>
-
-
-    </LinearLayout>
+        android:divider="#5D5D5D"
+        android:background="#F5F5F5"
+        android:dividerHeight="0px"
+        android:textSize="24sp"
+        android:textColor="#4C4C4C"/>
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
