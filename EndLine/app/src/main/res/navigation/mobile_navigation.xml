@@ -30,23 +30,47 @@
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
 
+
     <!-- 10.12 all 네비게이션 추가 -->
+
+    <activity
+        android:id="@+id/nav_barcodeScan"
+        android:name="com.example.endline_v1.ScanBarCode"
+        android:label="Barcode Scan"
+        tools:layout="@layout/activity_scanpage"/>
+
+    <!--
+    <activity
+        android:id="@+id/nav_barcodeNumber"
+         android: name 은 아직 액티비티를 안만들어서 없음. 어플설계 ppt 참고
+        android:label="Barcode Number" />
+    -->
+
+    <activity
+        android:id="@+id/nav_directlyAdd"
+        android:name="com.example.endline_v1.ScanBarCode"
+        android:label="Directly Add"
+        tools:layout="@layout/activity_scanpage"/>
+
     <fragment
         android:id="@+id/nav_all"
         android:name="com.example.endline_v1.ui.all.AllFragment"
         android:label="All"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_all" />
+
+    <!-- 여기까지 -->
+
 
     <fragment
         android:id="@+id/nav_beauty"
         android:name="com.example.endline_v1.ui.beauty.BeautyFragment"
         android:label="@string/menu_beauty"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_beauty" />
     <fragment
         android:id="@+id/nav_food"
         android:name="com.example.endline_v1.ui.food.FoodFragment"
         android:label="@string/menu_food"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_food" />
     <fragment
         android:id="@+id/nav_health"
         android:name="com.example.endline_v1.ui.health.HealthFragment"

@@ -1,6 +1,7 @@
 package com.example.endline_v1;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -47,7 +49,7 @@ public class ScanBarCode extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanpage);
-        
+
 //        getSupportActionBar().setTitle("제품 입력");
 
         et_barcode = (EditText) findViewById(R.id.et_barcode);
@@ -151,7 +153,9 @@ public class ScanBarCode extends AppCompatActivity {
             }
         });
 
-        new IntentIntegrator(this).initiateScan();
+        //Directly Add 를 눌렀을 때만 아래 코드를 패스하는 코드가 필요?
+            new IntentIntegrator(this).initiateScan();
+
     }
 
     private String getTime(){
@@ -165,6 +169,7 @@ public class ScanBarCode extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         et_barcode.setText("바코드 번호 : " + result.getContents());
 //        Toast.makeText(this, "ISBN : " + result.getContents(), Toast.LENGTH_LONG).show();
