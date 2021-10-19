@@ -29,8 +29,6 @@ public class AllFragment extends Fragment {
     private ListView lv;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         AllViewModel = new ViewModelProvider(this).get(AllViewModel.class);
         View root = inflater.inflate(R.layout.fragment_all, container, false);

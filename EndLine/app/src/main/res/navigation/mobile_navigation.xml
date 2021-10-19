@@ -48,9 +48,10 @@
 
     <activity
         android:id="@+id/nav_directlyAdd"
-        android:name="com.example.endline_v1.ScanBarCode"
+        android:name="com.example.endline_v1.ScanBarCode2"
         android:label="Directly Add"
-        tools:layout="@layout/activity_scanpage"/>
+        tools:layout="@layout/activity_scanpage"
+        />
 
     <fragment
         android:id="@+id/nav_all"
