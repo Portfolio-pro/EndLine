@@ -44,7 +44,7 @@
         </group>
         <item
             android:id="@+id/nav_all"
-            android:icon="@drawable/ic_baseline_view_headline_24"
+            android:icon="@drawable/ic_baseline_apps_24"
             android:title="All" />
 
         <!-- 여기까지 총 4개 추가 -->

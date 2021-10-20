@@ -39,12 +39,10 @@
         android:label="Barcode Scan"
         tools:layout="@layout/activity_scanpage"/>
 
-    <!--
     <activity
         android:id="@+id/nav_barcodeNumber"
-         android: name 은 아직 액티비티를 안만들어서 없음. 어플설계 ppt 참고
+        android:name="com.example.endline_v1.BarCodeNum"
         android:label="Barcode Number" />
-    -->
 
     <activity
         android:id="@+id/nav_directlyAdd"

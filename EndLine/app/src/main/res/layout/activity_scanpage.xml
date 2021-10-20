@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +32,11 @@
                 android:visibility="visible"
                 app:srcCompat="@drawable/ic_baseline_image_24"
                 tools:visibility="visible"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="5dp"></ImageView>
-
-
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp">
+            </ImageView>
 
         </LinearLayout>
 
@@ -48,23 +50,27 @@
             android:id="@+id/et_barcode"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:enabled="false"
-            android:hint=" 바코드 번호"
+            android:drawableLeft="@drawable/ic_baseline_qr_code_scanner_24"
+            android:drawablePadding="10dp"
+            android:hint="바코드 번호"
             />
         <EditText
             android:id="@+id/et_productName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/ic_baseline_drive_file_rename_outline_24"
+            android:drawablePadding="10dp"
             android:layout_weight="1"
-            android:hint=" 제품명"
+            android:hint="제품명"
             />
-
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
@@ -74,7 +80,8 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/style_bottom_border"
                 android:entries="@array/spiner_item"
-                android:paddingTop="15dp"
+                android:paddingTop="10dp"
+
                 android:paddingBottom="15dp"/>
         <EditText
             android:id="@+id/et_category"
@@ -82,7 +89,6 @@
             android:layout_height="match_parent"
             android:visibility="gone"
             android:layout_weight="1"
-            android:hint="카테고리"
             />
 
         <EditText
@@ -91,7 +97,9 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:hint=" 가격"
+            android:drawableLeft="@drawable/ic_baseline_monetization_on_24"
+            android:drawablePadding="10dp"
+            android:hint="가격"
             />
 
         <LinearLayout
@@ -109,6 +117,8 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:hint="구매 일자"
+                android:drawableLeft="@drawable/ic_baseline_edit_calendar_24"
+                android:drawablePadding="10dp"
                 android:enabled="false"
                 android:textSize="18dp" />
 
@@ -134,6 +144,8 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:hint="유통 기한"
+                android:drawableLeft="@drawable/ic_baseline_edit_calendar_24"
+                android:drawablePadding="10dp"
                 android:enabled="false"
                 android:textSize="18dp" />
 
