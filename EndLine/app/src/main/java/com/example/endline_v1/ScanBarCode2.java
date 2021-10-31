@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,10 +39,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class ScanBarCode2 extends AppCompatActivity {
 
-    EditText et_barcode, et_productName, et_category, et_price, et_buyDay, et_endline;
+    EditText et_barcode, et_productName, et_category, et_brand, et_price, et_buyDay, et_endline; //10.30 제조사 추가
     Button btn_buyDatePicker, btn_endLinePicker, btn_insertScan, btn_cancelScan;
     Spinner spinner;
     Map<String, Object> data = new HashMap<>();
@@ -67,6 +70,7 @@ public class ScanBarCode2 extends AppCompatActivity {
 
         et_barcode = (EditText) findViewById(R.id.et_barcode);
         et_productName = (EditText) findViewById(R.id.et_productName);
+        et_brand = (EditText) findViewById(R.id.et_brand); //10.30 제조사 추가
         et_price = (EditText) findViewById(R.id.et_price);
         et_category = (EditText) findViewById(R.id.et_category);
         et_buyDay = (EditText) findViewById(R.id.et_buyDay);
@@ -76,6 +80,11 @@ public class ScanBarCode2 extends AppCompatActivity {
         btn_insertScan = (Button) findViewById(R.id.btn_insertScan);
         btn_cancelScan = (Button) findViewById(R.id.btn_cancelScan);
         spinner = (Spinner) findViewById(R.id.spinner);
+
+        //10.30 추가, 바코드 번호 입력 활성화, 필터 설정
+        et_barcode.setEnabled(true);
+        et_barcode.setFilters(new InputFilter[] { editFilter });
+        et_price.setFilters(new InputFilter[] { editFilter });
 
         //10.20 추가, 갤러리에서 앨범 선택
         iv.setOnClickListener(new View.OnClickListener() {
@@ -101,14 +110,14 @@ public class ScanBarCode2 extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener buyDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                et_buyDay.setText(year + "-" + month + "-" + dayOfMonth);
+                et_buyDay.setText(year + "-" + (month+1) + "-" + dayOfMonth);
             }
         };
 
         DatePickerDialog.OnDateSetListener endLineDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                et_endline.setText(year + "-" + month + "-" + dayOfMonth);
+                et_endline.setText(year + "-" + (month+1) + "-" + dayOfMonth);
             }
         };
 
@@ -145,22 +154,12 @@ public class ScanBarCode2 extends AppCompatActivity {
 
                 FirebaseFirestore firestore = FirebaseFirestore.getInstance();
                 FirebaseAuth user = FirebaseAuth.getInstance();
-                Toast.makeText(getApplicationContext(), user.getUid(), Toast.LENGTH_SHORT).show();
-
-                data.put("UID", user.getUid());
-                data.put("바코드 번호", et_barcode.getText().toString().substring(9));
-                data.put("등록 일자", getTime());
-                data.put("제품명", et_productName.getText().toString());
-                data.put("카테고리", et_category.getText().toString());
-                data.put("가격", et_price.getText().toString());
-                data.put("구매 일자", et_buyDay.getText().toString());
-                data.put("유통 기한", et_endline.getText().toString());
-
+                //Toast.makeText(getApplicationContext(), user.getUid(), Toast.LENGTH_SHORT).show(); // 10.30 이거 입력완료 누르고 또 떠서 지움
 
                 //10.20 추가
-                progressDialog = new ProgressDialog(getApplicationContext());
-                progressDialog.setTitle("Uploading File...");
-                progressDialog.show();
+                //progressDialog = new ProgressDialog(getApplicationContext());
+                //progressDialog.setTitle("Uploading File...");
+                //progressDialog.show();
 
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.KOREA); //저장형식
                 Date now = new Date();
@@ -175,7 +174,31 @@ public class ScanBarCode2 extends AppCompatActivity {
                                 storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        data.put("이미지",uri.toString());
+                                        String strUrl = uri.toString();
+
+                                        data.put("UID", user.getUid());
+                                        data.put("바코드 번호", et_barcode.getText().toString().substring(9));
+                                        data.put("등록 일자", getTime());
+                                        data.put("제품명", et_productName.getText().toString());
+                                        data.put("카테고리", et_category.getText().toString());
+                                        data.put("제조사", et_brand.getText().toString()); //10.30 제조사 추가
+                                        data.put("가격", et_price.getText().toString());
+                                        data.put("구매 일자", et_buyDay.getText().toString());
+                                        data.put("유통 기한", et_endline.getText().toString());
+                                        data.put("사용 여부", "미사용");
+                                        data.put("이미지",strUrl);
+
+                                        firestore.collection("mainData").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Log.d("Firestore 입력", "write data to firebase");
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("firestore input", "write data fail");
+                                            }
+                                        });
                                     }
                                 });
                             }
@@ -190,17 +213,6 @@ public class ScanBarCode2 extends AppCompatActivity {
                 // 10.20 여기까지
 
 
-                firestore.collection("mainData").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Firestore 입력", "write data to firebase");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("firestore input", "write data fail");
-                    }
-                });
 
             }
         });
@@ -232,10 +244,26 @@ public class ScanBarCode2 extends AppCompatActivity {
         return getTime;
     }
 
+    //10.30 추가, 필터 만들기
+    protected InputFilter editFilter = new InputFilter() {
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            Pattern pattern = Pattern.compile("^[0-9]*$");        // 숫자
+            // Pattern pattern = Pattern.compile("^[a-zA-Z]+$");        // 영문
+            // Pattern pattern = Pattern.compile("^[ㄱ-ㅎ가-힣]+$");        // 한글
+            // Pattern pattern = Pattern.compile("^[a-zA-Z0-9ㄱ-ㅎ가-힣]+$");        // 영문,숫자,한글
+            if(!pattern.matcher(source).matches()) {
+                Toast.makeText(getApplicationContext(), "숫자를 입력해주세요", Toast.LENGTH_SHORT).show();
+                return "";
+            }
+            return null;
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        //IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 100 && data != null && data.getData() != null) {
             imageUri = data.getData();

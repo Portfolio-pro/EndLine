@@ -20,7 +20,8 @@
         <activity android:name=".InfoActivity"></activity>
         <activity
             android:name=".SearchActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.EndLine_v1.NoActionBar" />
         <activity android:name=".SettingActivity" />
         <activity
             android:name=".LoadActivity"
