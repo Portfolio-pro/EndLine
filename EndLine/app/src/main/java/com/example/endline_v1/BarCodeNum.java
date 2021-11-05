@@ -37,7 +37,11 @@ public class BarCodeNum extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // EditText의 값을 넘겨줘야함. 넘겨준 페이지에서는 받은 값을 인증키로 검색해서 데이터를 입력해야함.
-                Intent intent;
+
+                String barcodeNum = et_barcodeNum.getText().toString();
+                Intent intent = new Intent(getApplicationContext(),ScanBarCode2.class); // intent로 값을 받아서 fb에서 찾아야되는데 Scanpage3을 만드는게 좋을까?
+                intent.putExtra("barcodeNum", barcodeNum);
+                startActivity(intent);
             }
         });
 

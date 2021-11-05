@@ -6,4 +6,286 @@
     android:layout_height="match_parent"
     tools:context=".InfoActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1.5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/info_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="5dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="18dp">
+
+                    <Button
+                        android:id="@+id/btn_infoUse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="사용"
+                        android:textSize="16dp"
+                        android:textStyle="bold"/>
+                    <Button
+                        android:id="@+id/btn_infoUseNot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="미사용"
+                        android:textSize="16dp"
+                        android:textStyle="bold"/>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/info_imgUse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:background="@drawable/circle"
+                            android:backgroundTint="#F44336" />
+                        <ImageView
+                            android:id="@+id/info_imgUseNot"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/circle"
+                            android:backgroundTint="#8BC34A"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_weight="3">
+
+                <TextView
+                    android:id="@+id/info_productName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apple"
+                    android:textStyle="bold"
+                    android:textSize="35dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:text=">"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:id="@+id/info_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="식품"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:id="@+id/info_addDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="2021-11-30"
+                    android:gravity="right"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2E2E2E">
+                <TextView
+                    android:text="바코드"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/white"/>
+                <TextView
+                    android:id="@+id/info_barcode"
+                    android:text="123123123"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2E2E2E">
+                <TextView
+                    android:text="제조사"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/white"/>
+                <TextView
+                    android:id="@+id/info_brand"
+                    android:text="(주)유한양행"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2E2E2E">
+                <TextView
+                    android:text="가격"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/white"/>
+
+                <TextView
+                    android:id="@+id/info_price"
+                    android:layout_weight="1"
+                    android:text="1000원"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2E2E2E">
+                <TextView
+                    android:text="구매일자"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/white"/>
+                <TextView
+                    android:id="@+id/info_buyDay"
+                    android:text="2021년 11월 5일"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2E2E2E">
+                <TextView
+                    android:text="유통기한"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/white"/>
+                <TextView
+                    android:id="@+id/info_endline"
+                    android:text="2021년 11월 30일"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"/>
+            </TableRow>
+
+        </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_weight="1"
+                    android:text="수정"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="13dp"
+                    android:text="삭제"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

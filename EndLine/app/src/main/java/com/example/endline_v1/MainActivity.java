@@ -89,54 +89,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //10.12추가 (MainActivity에 추가한 코드라서 Profile같은 다른 메뉴에 갔다가 Home 메뉴로 돌아오면 데이터가 다 사라져있다.)
-        //Fragment에 코드를 추가해야 함.
-        tv_home = findViewById(R.id.text_home); // 날짜 보여주는 곳
-        cv_home = findViewById(R.id.calendarView); // 달력
-        lv = findViewById(R.id.list_home); // 리스트 뷰
-        final ArrayList<String> midList = new ArrayList<String>();
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,midList);
-        lv.setAdapter(adapter);
 
-        // 이 부분은 임의대로 넣은 부분이고 추후 Firestore에서 데이터를 받아와야한다.
-        midList.add("01. 서울우유");
-        midList.add("02. 가나초콜릿");
-        midList.add("03. 사각햇반");
-        midList.add("04. 유부초밥");
-        midList.add("05. 옥수수식빵");
-        midList.add("06. 아침햇살");
-        midList.add("07. 종합비타민");
-        midList.add("08. 홍삼스틱");
-        midList.add("09. 이소티논");
-        midList.add("10. 강력소화제");
-        midList.add("11. 오메가3");
-        midList.add("12. 비비고 왕교자");
-        midList.add("13. 그리밀 단백질");
-
-        adapter.notifyDataSetChanged();
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //아이템 클릭했을 때 물품 정보화면으로 넘어가는 코드
-
-            }
-        });
-
-        DateFormat formatter = new SimpleDateFormat("[ 유통기한 만료일 : yyyy년 MM월 d일 ]"); // 날짜 형식
-        Date date = new Date(cv_home.getDate()); // 달력에서 날짜 가져오기
-        tv_home.setText(formatter.format(date));
-
-        cv_home.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
-                String day;
-                day = "[ 유통기한 만료일 : "+ year + "년 " + (month+1) + "월 " + dayOfMonth +"일 ]";
-                tv_home.setText(day);
-            }
-        });
-
-        // 10.12 여기까지
 
         auth = FirebaseAuth.getInstance();
         Toolbar toolbar = findViewById(R.id.toolbar);

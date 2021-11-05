@@ -8,42 +8,14 @@
     tools:context=".SettingActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DFF8ED"
-        android:orientation="vertical"
-        android:padding="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_notificationSetting"
+        <ExpandableListView
+            android:id="@+id/exList_endline"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="알림" />
-
-        <Button
-            android:id="@+id/btn_scheduleSetting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="일정" />
-
-        <Button
-            android:id="@+id/btn_timeSetting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="시간" />
-
-        <Button
-            android:id="@+id/btn_versionSetting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="버전" />
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

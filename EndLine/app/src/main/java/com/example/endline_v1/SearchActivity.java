@@ -39,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
         searchView = (SearchView) menu.findItem(R.id.action_searchview).getActionView();
         searchView.setIconifiedByDefault(false);
         searchView.setIconified(false);
-        searchView.setQueryHint("검색");
+        searchView.setQueryHint("물품명을 검색해주세요.");
 
         return super.onCreateOptionsMenu(menu);
     }

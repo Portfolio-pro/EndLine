@@ -88,7 +88,7 @@ public class ScanBarCode extends AppCompatActivity {
         btn_cancelScan = (Button) findViewById(R.id.btn_cancelScan);
         spinner = (Spinner) findViewById(R.id.spinner);
 
-        //10.30 추가, 필터 설정
+        //10.30 추가, 숫자 필터 설정
         et_barcode.setFilters(new InputFilter[] { editFilter });
         et_price.setFilters(new InputFilter[] { editFilter });
 
@@ -183,16 +183,16 @@ public class ScanBarCode extends AppCompatActivity {
                                         String strUrl = uri.toString();
 
                                         data.put("UID", user.getUid());
-                                        data.put("바코드 번호", et_barcode.getText().toString().substring(9));
-                                        data.put("등록 일자", getTime());
-                                        data.put("제품명", et_productName.getText().toString());
-                                        data.put("카테고리", et_category.getText().toString());
-                                        data.put("제조사", et_brand.getText().toString());
-                                        data.put("가격", et_price.getText().toString());
-                                        data.put("구매 일자", et_buyDay.getText().toString());
-                                        data.put("유통 기한", et_endline.getText().toString());
-                                        data.put("사용 여부", "미사용");
-                                        data.put("이미지",strUrl);
+                                        data.put("barcode", et_barcode.getText().toString().substring(9));
+                                        data.put("addDay", getTime());
+                                        data.put("productName", et_productName.getText().toString());
+                                        data.put("category", et_category.getText().toString());
+                                        data.put("brand", et_brand.getText().toString());
+                                        data.put("price", et_price.getText().toString());
+                                        data.put("buyDay", et_buyDay.getText().toString());
+                                        data.put("endline", et_endline.getText().toString());
+                                        data.put("use", "미사용");
+                                        data.put("img",strUrl);
 
                                         firestore.collection("mainData").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                             @Override
