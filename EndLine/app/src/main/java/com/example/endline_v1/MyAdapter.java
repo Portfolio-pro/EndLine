@@ -38,11 +38,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
         Products products = productsArrayList.get(position);
 
-        Glide.with(holder.itemView).load(productsArrayList.get(position).getImg()).into(holder.img);
+        Glide.with(holder.itemView).load(productsArrayList.get(position).getPhoto_url()).into(holder.photo_url);
 
-        holder.productName.setText(products.getProductName());
-        holder.endline.setText(products.getEndline()); //setText 괄호 안에를 바꾸면 내용이 바뀌나봄?
-        holder.addDay.setText(products.getAddDay());
+        holder.name.setText(products.getName());
+        holder.end_date.setText(products.getEnd_date()); //setText 괄호 안에를 바꾸면 내용이 바뀌나봄?
+        holder.buy_date.setText(products.getBuy_date());
         holder.category.setText(products.getCategory());
 
     }
@@ -54,17 +54,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView productName, endline, addDay, category;
-        ImageView img;
+        TextView name, end_date, buy_date, category;
+        ImageView photo_url;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            productName = itemView.findViewById(R.id.tvProductName);
-            endline = itemView.findViewById(R.id.tvEndline);
-            addDay = itemView.findViewById(R.id.tvAddDay);
-            category = itemView.findViewById(R.id.tvCategory);
-            img = itemView.findViewById(R.id.imgView);
+            name = itemView.findViewById(R.id.tv_rv_product_name);
+            end_date = itemView.findViewById(R.id.tv_rv_end_date);
+            buy_date = itemView.findViewById(R.id.tv_rv_buy_date);
+            category = itemView.findViewById(R.id.tv_rv_category);
+            photo_url = itemView.findViewById(R.id.iv_rv_product_img);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

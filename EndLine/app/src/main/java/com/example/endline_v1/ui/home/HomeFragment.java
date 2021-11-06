@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
         lv = root.findViewById(R.id.list_home); // 리스트 뷰
 
 
-        //11.05, Firestore에서 productName 필드의 값만 쭉 받아와야하는데 잘 모르겠음.
+        /*11.05, Firestore에서 productName 필드의 값만 쭉 받아와야하는데 잘 모르겠음.
         homeList = new ArrayList<String>();
 
         db.collection("mainData").addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
                 lv.setAdapter(adapter);
             }
         });
-        //11.05, 여기까지 수정해야함
+        *///11.05, 여기까지 수정해야함
 
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -18,14 +18,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="118dp"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgView"
-                android:layout_width="65dp"
-                android:layout_height="97dp"
+                android:id="@+id/iv_rv_product_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars"
@@ -43,7 +43,7 @@
             android:layout_marginBottom="3dp">
 
             <TextView
-                android:id="@+id/tvProductName"
+                android:id="@+id/tv_rv_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:gravity="center_vertical"
@@ -69,11 +69,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
-                            android:text="등록일 : "
+                            android:text="구매일 : "
                             android:textSize="13dp" />
 
                         <TextView
-                            android:id="@+id/tvAddDay"
+                            android:id="@+id/tv_rv_buy_date"
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:text="2021-10-01"
@@ -92,7 +92,7 @@
                             android:textSize="13dp" />
 
                         <TextView
-                            android:id="@+id/tvEndline"
+                            android:id="@+id/tv_rv_end_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2021-10-01"
@@ -107,8 +107,8 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvCategory"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_rv_category"
+                        android:layout_width="105dp"
                         android:layout_height="43dp"
                         android:gravity="right|bottom"
                         android:text="Food"

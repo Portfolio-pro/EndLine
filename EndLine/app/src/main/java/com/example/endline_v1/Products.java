@@ -1,23 +1,31 @@
 package com.example.endline_v1;
 
 public class Products {
-    private String UID, barcode, productName, category, brand, addDay, buyDay, endline, use, img;
+    private String UID, barcode, name, category, brand, add_date, buy_date, end_date, use, photo_url;
 
     public Products(){}
 
-    public Products(String UID, String barcode, String productName, String category, String brand,
-                    String addDay, String buyDay, String endline, String use, String img) {
-        this.UID = UID;
+    public Products(String barcode, String name, String category, String brand,
+                    String add_date, String buy_date, String end_date, String use, String photo_url) {
         this.barcode= barcode;
-        this.productName= productName;
+        this.name= name;
         this.category= category;
         this.brand= brand;
-        this.addDay= addDay;
-        this.buyDay= buyDay;
-        this.endline= endline;
+        this.add_date= add_date;
+        this.buy_date= buy_date;
+        this.end_date= end_date;
         this.use = use;
-        this.img= img;
+        this.photo_url= photo_url;
     }
+
+    public Products(String name, String category, String buy_date, String end_date, String photo_url) {
+        this.name= name;
+        this.category= category;
+        this.buy_date= buy_date;
+        this.end_date= end_date;
+        this.photo_url= photo_url;
+    }
+
 
     public String getUID() {
         return UID;
@@ -35,12 +43,12 @@ public class Products {
         this.barcode = barcode;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCategory() {
@@ -59,28 +67,28 @@ public class Products {
         this.brand = brand;
     }
 
-    public String getAddDay() {
-        return addDay;
+    public String getAdd_date() {
+        return add_date;
     }
 
-    public void setAddDay(String addDay) {
-        this.addDay = addDay;
+    public void setAdd_date(String add_date) {
+        this.add_date = add_date;
     }
 
-    public String getBuyDay() {
-        return buyDay;
+    public String getBuy_date() {
+        return buy_date;
     }
 
-    public void setBuyDay(String buyDay) {
-        this.buyDay = buyDay;
+    public void setBuy_date(String buy_date) {
+        this.buy_date = buy_date;
     }
 
-    public String getEndline() {
-        return endline;
+    public String getEnd_date() {
+        return end_date;
     }
 
-    public void setEndline(String endline) {
-        this.endline = endline;
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
     }
 
     public String getUse() {
@@ -91,11 +99,11 @@ public class Products {
         this.use = use;
     }
 
-    public String getImg() {
-        return img;
+    public String getPhoto_url() {
+        return photo_url;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
     }
 }

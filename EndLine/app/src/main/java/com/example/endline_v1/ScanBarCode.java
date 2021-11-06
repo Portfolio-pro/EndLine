@@ -183,16 +183,16 @@ public class ScanBarCode extends AppCompatActivity {
                                         String strUrl = uri.toString();
 
                                         data.put("UID", user.getUid());
-                                        data.put("barcode", et_barcode.getText().toString().substring(9));
-                                        data.put("addDay", getTime());
-                                        data.put("productName", et_productName.getText().toString());
-                                        data.put("category", et_category.getText().toString());
-                                        data.put("brand", et_brand.getText().toString());
-                                        data.put("price", et_price.getText().toString());
-                                        data.put("buyDay", et_buyDay.getText().toString());
-                                        data.put("endline", et_endline.getText().toString());
-                                        data.put("use", "미사용");
-                                        data.put("img",strUrl);
+                                        data.put("바코드 번호", et_barcode.getText().toString().substring(9));
+                                        data.put("등록일자", getTime());
+                                        data.put("제품명", et_productName.getText().toString());
+                                        data.put("카테고리", et_category.getText().toString());
+                                        data.put("제조사", et_brand.getText().toString());
+                                        data.put("가격", et_price.getText().toString());
+                                        data.put("구매일자", et_buyDay.getText().toString());
+                                        data.put("유통기한", et_endline.getText().toString());
+                                        data.put("사용여부", "미사용");
+                                        data.put("이미지",strUrl);
 
                                         firestore.collection("mainData").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                             @Override
