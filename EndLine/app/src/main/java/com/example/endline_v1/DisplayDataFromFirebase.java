@@ -31,7 +31,7 @@ public class DisplayDataFromFirebase {
     private ArrayList<Products> list;
     private RecyclerView recyclerView;
     private ItemRecyclerAdapter adapter;
-    private String category;
+    private String category, product_name;
 
     public DisplayDataFromFirebase(String category, RecyclerView recyclerView, Context context) {
         this.recyclerView = recyclerView;
@@ -39,10 +39,13 @@ public class DisplayDataFromFirebase {
         this.category = category;
     }
 
-    public DisplayDataFromFirebase(RecyclerView recyclerView, Context context) {
+    public DisplayDataFromFirebase(String category, RecyclerView recyclerView, Context context, String product_name){
         this.recyclerView = recyclerView;
         this.context = context;
+        this.category = category;
+        this.product_name = product_name;
     }
+
 
     public void DisplayData(){
         auth = FirebaseAuth.getInstance();
@@ -57,70 +60,29 @@ public class DisplayDataFromFirebase {
         getData();
     }
 
-    public void DisplayData_all(){
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-        firestore = FirebaseFirestore.getInstance();
-        collectionReference = firestore.collection("mainData");
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        list = new ArrayList<>();
-        adapter = new ItemRecyclerAdapter(list);
-        recyclerView.setAdapter(adapter);
-        getData_all();
-    }
-
-    private void getData_all() {
-        Log.d("UID", user.getUid());
-        query = collectionReference.whereEqualTo("UID", user.getUid());
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for (QueryDocumentSnapshot document : task.getResult()){
-                        if(document.exists()){
-                            Log.d("getData", document.getData().toString());
-                            Products products = new Products(
-                                    document.get("제품명").toString(),
-                                    document.get("카테고리").toString(),
-                                    document.get("구매일자").toString(),
-                                    document.get("유통기한").toString(),
-                                    document.get("이미지").toString()
-                            );
-                            list.add(products);
-                            adapter.notifyDataSetChanged();
-                        }else{
-                            Log.w("getData", "No Data in uid");
-
-                            Toast.makeText(context, "아직 데이터가 없습니다!", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }else{
-                    Log.w("getData", "fail");
-                    Toast.makeText(context, "데이터 로딩 실패\n다시 시도해 보세요", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
-
-    String field = "유통기한";
-
     private void getData() {
         Log.d("UID", user.getUid());
-        query = collectionReference.whereEqualTo("카테고리", category).whereEqualTo("UID", user.getUid());
+        if(category == "All"){
+            query = collectionReference.whereEqualTo("UID", user.getUid());
+        }else if(category == "Search"){
+            query = collectionReference.whereEqualTo("UID", user.getUid()).whereEqualTo("product_name", product_name);
+        }
+        else{
+            query = collectionReference.whereEqualTo("category", category).whereEqualTo("UID", user.getUid());
+        }
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for (QueryDocumentSnapshot document : task.getResult()){
-                        if(document.exists()){
+                        if(document.get("product_name") != null){
                             Log.d("getData", document.getData().toString());
                             Products products = new Products(
-                                    document.get("제품명").toString(),
-                                    document.get("카테고리").toString(),
-                                    document.get("구매일자").toString(),
-                                    document.get("유통기한").toString(),
-                                    document.get("이미지").toString()
+                                    document.get("product_name").toString(),
+                                    document.get("category").toString(),
+                                    document.get("buy_date").toString(),
+                                    document.get("end_line").toString(),
+                                    document.get("img").toString()
                             );
                             list.add(products);
                             adapter.notifyDataSetChanged();
@@ -128,6 +90,7 @@ public class DisplayDataFromFirebase {
                             Log.w("getData", "No Data in uid");
                             Toast.makeText(context, "아직 데이터가 없습니다!", Toast.LENGTH_LONG).show();
                         }
+
                     }
                 }else{
                     Log.w("getData", "fail");

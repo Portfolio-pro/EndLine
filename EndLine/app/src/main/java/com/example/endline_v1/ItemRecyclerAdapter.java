@@ -1,6 +1,7 @@
 package com.example.endline_v1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,6 +63,16 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
             this.tv_rv_category = (TextView) view.findViewById(R.id.tv_rv_category);
             this.tv_rv_buydate = (TextView) view.findViewById(R.id.tv_rv_buy_date);
             this.tv_rv_enddate = (TextView) view.findViewById(R.id.tv_rv_end_date);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, InfoActivity.class);
+                    intent.putExtra("product_name", tv_rv_name.getText());
+                    context.startActivity(intent);
+                }
+            });
+
         }
     }
 }

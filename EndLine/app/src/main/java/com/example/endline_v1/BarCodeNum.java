@@ -29,10 +29,6 @@ public class BarCodeNum extends AppCompatActivity {
         //10.30 추가, 필터 설정
         et_barcodeNum.setFilters(new InputFilter[] { editFilter });
 
-        //번호를 입력하고 등록버튼을 누르면 번호 값을 인텐트로 넘겨주면서 데이터 찾기
-        //인텐트로 넘겨주는거니까 ScanBarCode2 그대로 가져다 쓰면 될듯
-        //대신 카메라 키는 거 윗줄에 조건문 넣어서 작동하지 않도록 조절해야함.
-
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +38,7 @@ public class BarCodeNum extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),ScanBarCode2.class); // intent로 값을 받아서 fb에서 찾아야되는데 Scanpage3을 만드는게 좋을까?
                 intent.putExtra("barcodeNum", barcodeNum);
                 startActivity(intent);
+                finish();
             }
         });
 

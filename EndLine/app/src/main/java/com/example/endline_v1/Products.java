@@ -18,11 +18,20 @@ public class Products {
         this.photo_url= photo_url;
     }
 
+    // 리사이클러뷰 어댑터
     public Products(String name, String category, String buy_date, String end_date, String photo_url) {
         this.name= name;
         this.category= category;
         this.buy_date= buy_date;
         this.end_date= end_date;
+        this.photo_url= photo_url;
+    }
+
+    // 상품 > 바코드, 제품명, 제조사, 이미지 url
+    public Products(String barcode, String name, String brand, String photo_url) {
+        this.barcode = barcode;
+        this.name = name;
+        this.brand = brand;
         this.photo_url= photo_url;
     }
 

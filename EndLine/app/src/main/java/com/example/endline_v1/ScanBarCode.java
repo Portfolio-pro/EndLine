@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,12 +29,20 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -63,6 +72,13 @@ public class ScanBarCode extends AppCompatActivity {
     String strUrl;
     ImageView iv;
     // 여기까지
+
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private FirebaseFirestore firestore;
+    private CollectionReference collectionReference;
+    private Context context;
+    private Query query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,16 +199,16 @@ public class ScanBarCode extends AppCompatActivity {
                                         String strUrl = uri.toString();
 
                                         data.put("UID", user.getUid());
-                                        data.put("바코드 번호", et_barcode.getText().toString().substring(9));
-                                        data.put("등록일자", getTime());
-                                        data.put("제품명", et_productName.getText().toString());
-                                        data.put("카테고리", et_category.getText().toString());
-                                        data.put("제조사", et_brand.getText().toString());
-                                        data.put("가격", et_price.getText().toString());
-                                        data.put("구매일자", et_buyDay.getText().toString());
-                                        data.put("유통기한", et_endline.getText().toString());
-                                        data.put("사용여부", "미사용");
-                                        data.put("이미지",strUrl);
+                                        data.put("barcode", et_barcode.getText().toString().substring(9));
+                                        data.put("register_date", getTime());
+                                        data.put("product_name", et_productName.getText().toString());
+                                        data.put("category", et_category.getText().toString());
+                                        data.put("brand", et_brand.getText().toString());
+                                        data.put("price", et_price.getText().toString());
+                                        data.put("buy_date", et_buyDay.getText().toString());
+                                        data.put("end_line", et_endline.getText().toString());
+                                        data.put("use_state", "미사용");
+                                        data.put("img",strUrl);
 
                                         firestore.collection("mainData").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                             @Override
@@ -276,12 +292,38 @@ public class ScanBarCode extends AppCompatActivity {
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
             if(result.getContents() != null) { // 바코드 번호를 찍으면
+                String barcodeNum = result.getContents();
 
-                // !! 바코드 번호에 해당하는 제품의 바코드번호, 제조사, 이미지 정보를 불러와 자동입력시킴
-                // !! 바코드 번호에 대한 정보가 없으면 메세지로 알려주고 et_barcod.setEndable(true)로 바꿈
-                // !! 위의 두 작업은 if문으로 조건을 줘서 상황에 맞게 처리할 것
-                et_barcode.setText("바코드 번호 : " + result.getContents());
+                auth = FirebaseAuth.getInstance();
+                user = auth.getCurrentUser();
+                firestore = FirebaseFirestore.getInstance();
+                collectionReference = firestore.collection("mainData");
 
+                query = collectionReference.whereEqualTo("barcode", barcodeNum).whereEqualTo("UID", user.getUid());
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("getData", document.getData().toString());
+                                //Products products = new Products(
+                                et_barcode.setText(document.get("barcode").toString());
+                                et_productName.setText(document.get("product_name").toString());
+                                et_brand.setText(document.get("brand").toString());
+                                Glide.with(getApplicationContext()).load(document.get("img").toString()).into(iv);
+                                //);
+
+                                //et_barcode.setText(products.getBarcode());
+                                //et_productName.setText(products.getName());
+                                //et_brand.setText(products.getBrand());
+                                //Glide.with(getApplicationContext()).load(products.getPhoto_url()).into(iv);
+                            }
+                        } else {
+                            Log.w("getData", "fail");
+                            Toast.makeText(context, "데이터 로딩 실패\n다시 시도해 보세요", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
             else{
                 et_barcode.setEnabled(true);
