@@ -22,7 +22,7 @@ public class SearchActivity extends AppCompatActivity {
     MenuItem menuItem;
     RecyclerView recyclerView;
     ItemRecyclerAdapter adapter;
-    ArrayList<Products> list;
+    ArrayList<ItemDataSet> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

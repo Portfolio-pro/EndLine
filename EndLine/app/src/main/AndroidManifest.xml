@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_endline_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EndLine_v1">
-        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".ItemInfo"></activity>
         <activity
             android:name=".SearchActivity"
             android:parentActivityName=".MainActivity"
@@ -40,11 +40,11 @@
             android:label="등록하기"
             android:parentActivityName=".MainActivity"></activity>
         <activity
-            android:name=".BarCodeNum"
+            android:name=".EnterNumber"
             android:label="바코드 번호 입력"
             android:parentActivityName=".MainActivity"></activity>
         <activity
-            android:name=".ScanBarCode2"
+            android:name=".DirectlyAdd"
             android:label="등록하기"
             android:parentActivityName=".MainActivity"></activity>
         <activity

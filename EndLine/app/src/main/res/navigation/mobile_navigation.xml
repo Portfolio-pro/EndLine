@@ -40,13 +40,13 @@
         tools:layout="@layout/activity_scanpage"/>
 
     <activity
-        android:id="@+id/nav_barcodeNumber"
-        android:name="com.example.endline_v1.BarCodeNum"
+        android:id="@+id/nav_enter_number"
+        android:name="com.example.endline_v1.EnterNumber"
         android:label="Barcode Number" />
 
     <activity
-        android:id="@+id/nav_directlyAdd"
-        android:name="com.example.endline_v1.ScanBarCode2"
+        android:id="@+id/nav_directly_add"
+        android:name="com.example.endline_v1.DirectlyAdd"
         android:label="Directly Add"
         tools:layout="@layout/activity_scanpage"
         />

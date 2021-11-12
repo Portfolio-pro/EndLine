@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,7 @@ public class AllFragment extends Fragment {
     private AllViewModel AllViewModel;
     private RecyclerView recyclerView;
     private Activity activity;
+    private Spinner spinner_orderby;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -39,6 +42,8 @@ public class AllFragment extends Fragment {
         });*/
 
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView_all);
+        spinner_orderby = (Spinner) root.findViewById(R.id.spinner_orderby);
+
         DisplayDataFromFirebase displayer = new DisplayDataFromFirebase("All",recyclerView, activity.getApplicationContext());
         displayer.DisplayData();
 

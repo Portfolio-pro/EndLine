@@ -28,12 +28,12 @@ public class DisplayDataFromFirebase {
     private CollectionReference collectionReference;
     private Query query;
     private Context context;
-    private ArrayList<Products> list;
+    private ArrayList<ItemDataSet> list;
     private RecyclerView recyclerView;
     private ItemRecyclerAdapter adapter;
-    private String category, product_name;
+    private String category, product_name, order;
 
-    public DisplayDataFromFirebase(String category, RecyclerView recyclerView, Context context) {
+    public DisplayDataFromFirebase(String category,RecyclerView recyclerView, Context context) {
         this.recyclerView = recyclerView;
         this.context = context;
         this.category = category;
@@ -45,7 +45,6 @@ public class DisplayDataFromFirebase {
         this.category = category;
         this.product_name = product_name;
     }
-
 
     public void DisplayData(){
         auth = FirebaseAuth.getInstance();
@@ -64,7 +63,7 @@ public class DisplayDataFromFirebase {
         Log.d("UID", user.getUid());
         if(category == "All"){
             query = collectionReference.whereEqualTo("UID", user.getUid());
-        }else if(category == "Search"){
+        }else if(category == "search"){
             query = collectionReference.whereEqualTo("UID", user.getUid()).whereEqualTo("product_name", product_name);
         }
         else{
@@ -77,14 +76,14 @@ public class DisplayDataFromFirebase {
                     for (QueryDocumentSnapshot document : task.getResult()){
                         if(document.get("product_name") != null){
                             Log.d("getData", document.getData().toString());
-                            Products products = new Products(
+                            ItemDataSet itemDataSet = new ItemDataSet(
                                     document.get("product_name").toString(),
                                     document.get("category").toString(),
                                     document.get("buy_date").toString(),
                                     document.get("end_line").toString(),
                                     document.get("img").toString()
                             );
-                            list.add(products);
+                            list.add(itemDataSet);
                             adapter.notifyDataSetChanged();
                         }else{
                             Log.w("getData", "No Data in uid");

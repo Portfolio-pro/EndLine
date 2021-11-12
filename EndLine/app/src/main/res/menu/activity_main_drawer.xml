@@ -34,11 +34,11 @@
                 android:icon="@drawable/ic_baseline_qr_code_scanner_24"
                 android:title="Barcode Scan" />
             <item
-                android:id="@+id/nav_barcodeNumber"
+                android:id="@+id/nav_enter_number"
                 android:icon="@drawable/ic_baseline_confirmation_number_24"
                 android:title="Barcode Number" />
             <item
-                android:id="@+id/nav_directlyAdd"
+                android:id="@+id/nav_directly_add"
                 android:icon="@drawable/ic_baseline_library_add_24"
                 android:title="Directly Add" />
         </group>

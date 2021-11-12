@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +45,8 @@ public class BeautyFragment extends Fragment {
         });*/
 
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView_beauty);
+
+
         DisplayDataFromFirebase displayer = new DisplayDataFromFirebase("화장품", recyclerView, activity.getApplicationContext());
         displayer.DisplayData();
 

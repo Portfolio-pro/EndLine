@@ -7,40 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.health.HealthFragment">
 
-<!--    <ListView-->
-<!--        android:id="@+id/list"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/text_health"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" >-->
-<!--        <TextView-->
-<!--            android:id="@+id/tv_healthItem"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"/>-->
-<!--    </ListView>-->
 
-    <TextView
-        android:id="@+id/text_health"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.994" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_health"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="32dp" />
+        android:orientation="vertical"
+        android:layout_margin="8dp">
+
+        <Spinner
+            android:id="@+id/spinner_orderby_health"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:entries="@array/orderby_item"
+            android:layout_weight="16"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_health"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="74dp"
+            tools:layout_editor_absoluteY="32dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

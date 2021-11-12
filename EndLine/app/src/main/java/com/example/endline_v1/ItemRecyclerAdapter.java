@@ -18,10 +18,10 @@ import java.util.ArrayList;
 
 public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapter.CustomViewHolder> {
 
-    private ArrayList<Products> list;
+    private ArrayList<ItemDataSet> list;
     private Context context;
 
-    public ItemRecyclerAdapter(ArrayList<Products> list){
+    public ItemRecyclerAdapter(ArrayList<ItemDataSet> list){
         this.list = list;
     }
 
@@ -67,7 +67,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, InfoActivity.class);
+                    Intent intent = new Intent(context, ItemInfo.class);
                     intent.putExtra("product_name", tv_rv_name.getText());
                     context.startActivity(intent);
                 }
