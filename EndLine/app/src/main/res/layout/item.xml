@@ -58,9 +58,10 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
                     <LinearLayout
                         android:layout_width="118dp"
@@ -105,15 +106,23 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:layout_weight="2">
 
                     <TextView
                         android:id="@+id/tv_rv_category"
-                        android:layout_width="105dp"
-                        android:layout_height="43dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:gravity="right|bottom"
                         android:text="Food"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"/>
+
                 </LinearLayout>
             </LinearLayout>
 

@@ -63,7 +63,7 @@ public class DisplayDataFromFirebase {
         Log.d("UID", user.getUid());
         if(category == "All"){
             query = collectionReference.whereEqualTo("UID", user.getUid());
-        }else if(category == "search"){
+        }else if(category == "Search"){
             query = collectionReference.whereEqualTo("UID", user.getUid()).whereEqualTo("product_name", product_name);
         }
         else{

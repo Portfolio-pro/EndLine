@@ -111,6 +111,7 @@
                 android:background="@color/fui_transparent"
                 android:text="Apple"
                 android:textSize="30dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginBottom="10dp"
                 android:textStyle="bold" />
