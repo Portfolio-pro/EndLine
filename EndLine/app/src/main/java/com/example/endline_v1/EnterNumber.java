@@ -30,7 +30,7 @@ public class EnterNumber extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DirectlyAdd.class);
-                intent.putExtra("barcode_number", et_barcodeNum.getText().toString());
+                intent.putExtra("barcodeNum", et_barcodeNum.getText().toString());
                 startActivity(intent);
                 finish();
             }
