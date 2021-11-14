@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_endline_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EndLine_v1">
-        <activity android:name=".ItemInfo"></activity>
+        <activity android:name=".ItemInfo"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".SearchActivity"
             android:parentActivityName=".MainActivity"

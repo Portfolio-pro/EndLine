@@ -170,6 +170,8 @@ public class ItemInfo extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "삭제완료!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
                     finish();
                 }else{
                     Toast.makeText(getApplicationContext(), "삭제실패, 다음에 다시 시도해주세요", Toast.LENGTH_SHORT).show();

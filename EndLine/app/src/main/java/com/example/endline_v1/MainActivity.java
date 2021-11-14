@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_beauty, R.id.nav_food,
-                R.id.nav_health, R.id.nav_medical, R.id.nav_profile,
+                R.id.nav_health, R.id.nav_medical, R.id.nav_profile, R.id.nav_all,
                 R.id.nav_barcodeScan, R.id.nav_enter_number, R.id.nav_directly_add)
                 .setDrawerLayout(drawer)
                 .build();
