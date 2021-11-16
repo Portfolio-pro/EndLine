@@ -23,6 +23,7 @@ public class AllFragment extends Fragment {
     private RecyclerView recyclerView;
     private Activity activity;
     private Spinner spinner_orderby;
+    private String orderby;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -44,8 +45,19 @@ public class AllFragment extends Fragment {
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView_all);
         spinner_orderby = (Spinner) root.findViewById(R.id.spinner_orderby);
 
-        DisplayDataFromFirebase displayer = new DisplayDataFromFirebase("All",recyclerView, activity.getApplicationContext());
-        displayer.DisplayData();
+        spinner_orderby.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                orderby = parent.getItemAtPosition(position).toString();
+                DisplayDataFromFirebase displayer = new DisplayDataFromFirebase("All",orderby, recyclerView, activity.getApplicationContext());
+                displayer.DisplayData();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         return root;
     }

@@ -257,28 +257,21 @@ public class DirectlyAdd extends AppCompatActivity {
             // product 컬렉션
             // 필드 : barcode, product_name, brand, img
 
-            query = collectionReference.whereEqualTo("barcode", barcodeNum).whereEqualTo("UID", user.getUid());
+            query = collectionReference.whereEqualTo("barcode", barcodeNum);
             query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d("getData", document.getData().toString());
-                            //Products products = new Products(
                             et_barcode.setText(document.get("barcode").toString());
                             et_productName.setText(document.get("product_name").toString());
                             et_brand.setText(document.get("brand").toString());
                             Glide.with(getApplicationContext()).load(document.get("img").toString()).into(iv);
-                            //);
-
-                            //et_barcode.setText(products.getBarcode());
-                            //et_productName.setText(products.getName());
-                            //et_brand.setText(products.getBrand());
-                            //Glide.with(getApplicationContext()).load(products.getPhoto_url()).into(iv);
                         }
                     } else {
                         Log.w("getData", "fail");
-                        Toast.makeText(context, "데이터 로딩 실패\n다시 시도해 보세요", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "데이터를 찾을 수 없습니다.", Toast.LENGTH_LONG).show();
                     }
                 }
             });

@@ -1,5 +1,6 @@
 package com.example.endline_v1;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.endline_v1.ui.beauty.BeautyFragment;
@@ -28,6 +31,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     List<Integer> images;
     Context context;
     LayoutInflater inflater;
+
 
     public MainAdapter(Context context, List<String> titles, List<Integer> images){
         this.titles = titles;
@@ -62,24 +66,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
             super(itemView);
             title = itemView.findViewById(R.id.tv_main_menu);
             gridIcon = itemView.findViewById(R.id.iv_main_icon);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    switch (title.getText().toString()){
-                        case "Beauty" :
-
-                            break;
-                        case "Food" :
-                            break;
-                        case "Health" :
-                            break;
-                        case "Medical" :
-                            break;
-                    }
-                }
-            });
-
         }
     }
 }

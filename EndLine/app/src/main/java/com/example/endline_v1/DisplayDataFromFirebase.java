@@ -31,10 +31,17 @@ public class DisplayDataFromFirebase {
     private ArrayList<ItemDataSet> list;
     private RecyclerView recyclerView;
     private ItemRecyclerAdapter adapter;
-    private String category, product_name, order;
+    private String category, product_name, orderby;
 
     public DisplayDataFromFirebase(String category,RecyclerView recyclerView, Context context) {
         this.recyclerView = recyclerView;
+        this.context = context;
+        this.category = category;
+    }
+
+    public DisplayDataFromFirebase(String category, String orderby, RecyclerView recyclerView, Context context) {
+        this.recyclerView = recyclerView;
+        this.orderby = orderby;
         this.context = context;
         this.category = category;
     }
@@ -62,7 +69,7 @@ public class DisplayDataFromFirebase {
     private void getData() {
         Log.d("UID", user.getUid());
         if(category == "All"){
-            query = collectionReference.whereEqualTo("UID", user.getUid());
+            query = collectionReference.whereEqualTo("UID", user.getUid()).orderBy(orderby, Query.Direction.DESCENDING);
         }else if(category == "Search"){
             query = collectionReference.whereEqualTo("UID", user.getUid()).whereEqualTo("product_name", product_name);
         }

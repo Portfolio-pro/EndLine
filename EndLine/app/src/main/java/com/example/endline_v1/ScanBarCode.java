@@ -6,11 +6,14 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +52,7 @@ import com.google.firebase.storage.UploadTask;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -255,14 +259,6 @@ public class ScanBarCode extends AppCompatActivity {
         startActivityForResult(intent,100);
     }
 
-    private String getTime(){
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String getTime = dateFormat.format(date);
-        return getTime;
-    }
-
     //10.30 추가, 필터 만들기
     protected InputFilter editFilter = new InputFilter() {
         public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
@@ -306,31 +302,41 @@ public class ScanBarCode extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("getData", document.getData().toString());
-                                //Products products = new Products(
                                 et_barcode.setText(document.get("barcode").toString());
                                 et_productName.setText(document.get("product_name").toString());
                                 et_brand.setText(document.get("brand").toString());
                                 Glide.with(getApplicationContext()).load(document.get("img").toString()).into(iv);
-                                //);
-
-                                //et_barcode.setText(products.getBarcode());
-                                //et_productName.setText(products.getName());
-                                //et_brand.setText(products.getBrand());
-                                //Glide.with(getApplicationContext()).load(products.getPhoto_url()).into(iv);
                             }
                         } else {
                             Log.w("getData", "fail");
-                            Toast.makeText(context, "데이터 로딩 실패\n다시 시도해 보세요", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "데이터를 찾을 수 없습니다.", Toast.LENGTH_LONG).show();
+                            Intent directlyadd = new Intent(getApplicationContext(),DirectlyAdd.class);
+                            startActivity(directlyadd);
+                            finish();
                         }
                     }
                 });
             }
             else{
-                et_barcode.setEnabled(true);
+                //et_barcode.setEnabled(true);
+                Intent directlyadd = new Intent(getApplicationContext(),DirectlyAdd.class);
+                startActivity(directlyadd);
+                finish();
             }
-
         }
+    }
 
+    private String getTime(){
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String getTime = dateFormat.format(date);
+        return getTime;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

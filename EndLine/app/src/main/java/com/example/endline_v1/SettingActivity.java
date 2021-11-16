@@ -41,17 +41,14 @@ public class SettingActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataSet data = new DataSet("유통기한 임박 확인!!!");
-                list.add(data);
-                adapter.notifyDataSetChanged();
+
             }
         });
 
         btn_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                list.clear();
-                adapter.notifyDataSetChanged();
+
             }
         });
 

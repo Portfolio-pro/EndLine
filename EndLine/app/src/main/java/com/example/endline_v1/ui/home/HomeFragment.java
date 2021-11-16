@@ -1,74 +1,95 @@
 package com.example.endline_v1.ui.home;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.CalendarView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.endline_v1.MainAdapter;
+import com.example.endline_v1.DisplayDataFromFirebase;
+import com.example.endline_v1.MainActivity;
 import com.example.endline_v1.R;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.example.endline_v1.ui.all.AllFragment;
+import com.example.endline_v1.ui.beauty.BeautyFragment;
+import com.example.endline_v1.ui.food.FoodFragment;
+import com.example.endline_v1.ui.health.HealthFragment;
+import com.example.endline_v1.ui.medical.MedicalFragment;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private RecyclerView recyclerView;
+    private Activity activity;
+    private DisplayDataFromFirebase displayer;
+    private CardView cv_food, cv_beauty, cv_medical, cv_health;
 
-    RecyclerView recyclerview_main;
-    List<String> titles;
-    List<Integer> images;
-    MainAdapter mainAdapter;
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.activity = activity;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+//        final TextView textView = root.findViewById(R.id.text_home);
+//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
 
-        /*final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
+        cv_beauty = (CardView) root.findViewById(R.id.cv_beauty);
+        cv_medical = (CardView) root.findViewById(R.id.cv_medical);
+        cv_food = (CardView) root.findViewById(R.id.cv_food);
+        cv_beauty = (CardView) root.findViewById(R.id.cv_beauty);
+        cv_health = (CardView) root.findViewById(R.id.cv_health);
 
-        recyclerview_main=(RecyclerView)root.findViewById(R.id.recyclerview_main);
-
-        titles = new ArrayList<>();
-        images = new ArrayList<>();
-
-        titles.add("Beauty");
-        titles.add("Food");
-        titles.add("Health");
-        titles.add("Medical");
-
-        images.add(R.drawable.beauty);
-        images.add(R.drawable.food);
-        images.add(R.drawable.health);
-        images.add(R.drawable.madical);
-
-        mainAdapter = new MainAdapter(getActivity(),titles,images);
-
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false);
-        recyclerview_main.setLayoutManager(gridLayoutManager);
-        recyclerview_main.setAdapter(mainAdapter);
+        cv_beauty.setOnClickListener(listener);
+        cv_medical.setOnClickListener(listener);
+        cv_food.setOnClickListener(listener);
+        cv_health.setOnClickListener(listener);
 
         return root;
     }
+
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            switch (view.getId()){
+                case R.id.cv_beauty:
+                    Fragment fragment_beauty = new BeautyFragment();
+                    transaction.replace(R.id.nav_host_fragment, fragment_beauty);
+                    transaction.commit();
+                    break;
+                case R.id.cv_health:
+                    Fragment fragment_health = new HealthFragment();
+                    transaction.replace(R.id.nav_host_fragment, fragment_health);
+                    transaction.commit();
+                    break;
+                case R.id.cv_medical:
+                    Fragment fragment_medical = new MedicalFragment();
+                    transaction.replace(R.id.nav_host_fragment, fragment_medical);
+                    transaction.commit();
+                    break;
+                case R.id.cv_food:
+                    Fragment fragment_food = new FoodFragment();
+                    transaction.replace(R.id.nav_host_fragment, fragment_food);
+                    transaction.commit();
+                    break;
+            }
+        }
+    };
 }
