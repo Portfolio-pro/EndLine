@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.endline_v1.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <!--<fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.endline_v1.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.endline_v1.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />-->
+
+    <!-- Add Custom Fragment -->
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.endline_v1.ui.login.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <activity
+        android:id="@+id/nav_barcodeScan"
+        android:name="com.example.endline_v1.ScanBarCode"
+        android:label="@string/menu_barcode_scan"
+        tools:layout="@layout/activity_scanpage" />
+    <activity
+        android:id="@+id/nav_enter_number"
+        android:name="com.example.endline_v1.EnterNumber"
+        android:label="@string/menu_enter_number"
+        tools:layout="@layout/activity_enter_number" />
+    <activity
+        android:id="@+id/nav_directly_add"
+        android:name="com.example.endline_v1.DirectlyAdd"
+        android:label="@string/menu_directly_add"
+        tools:layout="@layout/activity_scanpage" />
+
+    <fragment
+        android:id="@+id/nav_all"
+        android:name="com.example.endline_v1.ui.all.AllFragment"
+        android:label="@string/menu_all"
+        tools:layout="@layout/fragment_all" />
+    <fragment
+        android:id="@+id/nav_beauty"
+        android:name="com.example.endline_v1.ui.beauty.BeautyFragment"
+        android:label="@string/menu_beauty"
+        tools:layout="@layout/fragment_beauty" />
+    <fragment
+        android:id="@+id/nav_food"
+        android:name="com.example.endline_v1.ui.food.FoodFragment"
+        android:label="@string/menu_food"
+        tools:layout="@layout/fragment_food" />
+    <fragment
+        android:id="@+id/nav_health"
+        android:name="com.example.endline_v1.ui.health.HealthFragment"
+        android:label="@string/menu_health"
+        tools:layout="@layout/fragment_health" />
+    <fragment
+        android:id="@+id/nav_medical"
+        android:name="com.example.endline_v1.ui.medical.MedicalFragment"
+        android:label="@string/menu_medical"
+        tools:layout="@layout/fragment_medical" />
+
+</navigation>
